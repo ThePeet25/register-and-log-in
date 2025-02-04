@@ -7,16 +7,20 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/user', {
-        username,
-        password,
-      });
+    // try {
+    //   const response = await axios.post('http://localhost:5000/api/user', {
+    //     username,
+    //     password,
+    //   });
 
-      console.log(response.data.message); // แสดงข้อความตอบกลับจาก Backend
-    } catch (error) {
-      console.error('Error:', error.response?.data?.message || error.message);
-    }
+    //   console.log(response.data.message);
+    // } catch (error) {
+    //   console.error('Error:', error.response?.data?.message || error.message);
+    // }
+
+    const resetInput = document.querySelector('input');
+    console.log(resetInput.value);
+    // resetInput.value = '';
   };
 
 
@@ -27,7 +31,7 @@ const App = () => {
         <form action="#" className='w-full flex flex-col gap-6 justify-center items-center' onSubmit={handleSubmit}>
           <label htmlFor="#" className="w-full text-neutral-800 bg-white font-semibold text-xl">Username
           </label>
-          <input type="text" placeholder="Username" className="w-full self-center rounded-2xl px-3 py-2 outline-none ring-2 ring-neutral-800 focus:border-1 focus:border-neutral-800 focus:ring-offset-3 transition-all" onChange={(e) => { setUsername(e.target.value) }} />
+          <input type="text" placeholder="Username" className="firstInput w-full self-center rounded-2xl px-3 py-2 outline-none ring-2 ring-neutral-800 focus:border-1 focus:border-neutral-800 focus:ring-offset-3 transition-all" value={username} onChange={(e) => { setUsername(e.target.value) }} />
           <label htmlFor="#" className="w-full text-neutral-800 bg-white font-semibold text-xl">Password
           </label>
           <input type="text" placeholder="Password" className="w-full self-center rounded-2xl px-3 py-2 outline-none ring-2 ring-neutral-800 focus:border-1 focus:border-neutral-800 focus:ring-offset-3 transition-all" onChange={(e) => { setPassword(e.target.value) }} />
