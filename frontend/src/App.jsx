@@ -7,16 +7,16 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // try {
-    //   const response = await axios.post('http://localhost:5000/api/user', {
-    //     username,
-    //     password,
-    //   });
+    try {
+      const response = await axios.post('/api/user', {
+        username,
+        password,
+      });
 
-    //   console.log(response.data.message);
-    // } catch (error) {
-    //   console.error('Error:', error.response?.data?.message || error.message);
-    // }
+      console.log(response.data.message);
+    } catch (error) {
+      console.error(error);
+    }
 
     const resetInput = document.querySelector('input');
     console.log(resetInput.value);
