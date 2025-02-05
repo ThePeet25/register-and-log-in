@@ -19,7 +19,7 @@ const App = () => {
     }
 
     const resetInput = document.querySelector('input');
-    console.log(resetInput.value);
+    // console.log(resetInput.value);
     // resetInput.value = '';
   };
 

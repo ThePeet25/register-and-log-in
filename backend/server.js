@@ -17,7 +17,9 @@ app.get('/api', (req, res) => {
 app.post('/api/user', (req, res) => {
     const result = req.body
     console.log(result);
-    res.send("I got this massage");
+    res.json({
+        message: "I got user"
+    });
 })
 
 app.listen(PORT, () => {
