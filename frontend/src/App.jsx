@@ -8,12 +8,14 @@ const App = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/user', {
-        username,
+      console.log(username, password);
+      //send email and password to backend
+      const response = await axios.post('/api/login', {
+        email: username,
         password,
       });
-
-      console.log(response.data.message);
+      //get data response
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
