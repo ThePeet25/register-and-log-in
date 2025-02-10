@@ -6,16 +6,19 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="fixed w-full py-6 px-12 z-50">
+    <nav className="fixed w-screen py-6 px-12 z-50">
       <div className="container mx-auto px-12  py-3 flex justify-between items-center bg-white text-neutral-800 shadow-lg shadow-white rounded-full">
-        <Link to="/" className="flex items-center space-x-1">
-          <SiSurveymonkey className="size-10" />
+        <Link
+          to="/"
+          className="flex items-center size-10 hover:scale-120 hover:drop-shadow-lg active:scale-100 transition-all"
+        >
+          <SiSurveymonkey className="size-full" />
         </Link>
-        <ul className="hidden md:flex space-x-8">
+        <ul className="hidden md:flex space-x-8 justify-between items-center">
           <li>
             <NavLink
               to="/"
-              className="text-lg font-medium hover:text-neutral-400 transition-colors"
+              className="text-lg font-medium hover:drop-shadow-md hover:text-xl active:text-lg transition-all"
             >
               Home
             </NavLink>
@@ -23,7 +26,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/about"
-              className="text-lg font-medium hover:text-neutral-400 transition-colors"
+              className="text-lg font-medium hover:drop-shadow-md hover:text-xl active:text-lg transition-all"
             >
               About
             </NavLink>
@@ -31,7 +34,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/contact"
-              className="text-lg font-medium hover:text-neutral-400 transition-colors"
+              className="text-lg font-medium hover:drop-shadow-md hover:text-xl active:text-lg transition-all"
             >
               Contact
             </NavLink>

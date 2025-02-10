@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaEyeSlash } from "react-icons/fa";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -47,7 +47,6 @@ const RegisterPage = () => {
               value={formData.username}
               onChange={handleChange}
               className="w-full px-3 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
-              required
             />
           </div>
           <div>
@@ -64,7 +63,6 @@ const RegisterPage = () => {
               value={formData.email}
               onChange={handleChange}
               className="w-full px-3 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
-              required
             />
           </div>
           <div>
@@ -82,13 +80,12 @@ const RegisterPage = () => {
                 value={formData.password}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
-                required
               />
-              <button>
-                <FaEyeSlash
-                  onClick={passwordToggle}
-                  className="absolute right-3 top-4 size-5 hover:scale-110 active:scale-90"
-                />
+              <button
+                className="absolute right-3 top-3 flex justify-center items-center size-7 rounded-full hover:bg-neutral-800/10 hover:scale-110  active:scale-90 transition-all"
+                onClick={passwordToggle}
+              >
+                {showPassword ? <FaRegEye /> : <FaEyeSlash />}
               </button>
             </div>
           </div>
