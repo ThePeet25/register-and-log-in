@@ -7,6 +7,8 @@ import Register from './components/Register'
 const App = () => {
   return (
     <div className="bg-neutral-800">
+      <Navbar />
+      <Home />
       <Login />
       <Register />
     </div>

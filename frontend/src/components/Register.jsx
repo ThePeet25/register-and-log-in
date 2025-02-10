@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -6,6 +7,11 @@ const Register = () => {
         email: '',
         password: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
+
+    const passwordToggle = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleChange = (e) => {
         setFormData({
@@ -56,19 +62,24 @@ const Register = () => {
                         <label htmlFor="password" className="text-sm font-medium text-neutral-800">
                             Password
                         </label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
-                            required
-                        />
+                        <div className="relative w-full item-center">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                id="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
+                                required
+                            />
+                            <button>
+                                <FaEyeSlash onClick={passwordToggle} className="absolute right-3 top-4 size-5 hover:scale-110 active:scale-90" />
+                            </button>
+                        </div>
                     </div>
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 font-bold text-white bg-neutral-800 rounded-lg cursor-pointer hover:bg-neutral-800/90 hover:scale-105 focus:outline-none focus:ring focus:ring-indigo-200 active:scale-95 transition-all"
+                        className="w-full px-4 py-2 mt-3 font-bold text-white bg-neutral-800 rounded-lg cursor-pointer hover:bg-neutral-800/90 hover:scale-105 focus:outline-none focus:ring focus:ring-indigo-200 active:scale-95 transition-all"
                     >
                         Register
                     </button>
