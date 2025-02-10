@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
+import Footer from "../components/Footer";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <main className="flex flex-col items-center justify-center flex-1 w-full px-4">
@@ -9,11 +10,9 @@ const Home = () => {
           This is the home page of the Monkey Project.
         </p>
       </main>
-      <footer className="bg-white w-full py-4 mt-4">
-        <p className="text-neutral-800 text-center">© 2025 Monkey Project. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
 
-export default Home;
+export default HomePage;
