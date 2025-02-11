@@ -22,9 +22,14 @@ app.use(express.json());
 app.use(cookieParser());
 //accecpt origin api
 app.use(cors({
-    credential: true,
+    credentials: true,
     origin: ['http://localhost:5173']
 }));
+
+//for test connect api with frontend
+app.get('/api', (req, res) => {
+    res.send("backend connect");
+})
 
 //api for register
 app.post('/api/register', async (req, res) => {
@@ -39,14 +44,14 @@ app.post('/api/register', async (req, res) => {
             bcrypt.hash(password, salt, async function(err, hash){
                 await pool.query(`insert into users( email, password ) values ( '${userData.email}' , '${hash}' )`);
                 res.json({
-                    message: "insert success",
-                    data: [
-                        email,
-                        hash
-                    ]
+                    message: "register success",
                 });
             })
         })
+        // const salt = bcrypt.genSalt(12);
+        // const hash = bcrypt.hash(userData.password, salt);
+        // await pool.query(`insert into users( email, password ) values ( '${userData.email}' , '${hash}' )`);
+        // await pool.query(`INSERT INTO users (email, password) VALUES (?, ?)`, [email, hash]);
     } catch(err) {
         res.send("email is already exits");
         console.error(err);

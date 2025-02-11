@@ -9,8 +9,8 @@ const App = () => {
     <div className="bg-neutral-800">
       <Navbar />
       <Home />
-      <Login />
       <Register />
+      <Login />
     </div>
   )
 }

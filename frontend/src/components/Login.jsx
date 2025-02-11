@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,10 +11,23 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
+    try {
+      const response = await axios.post('http://localhost:3001/api/login', {
+        email,
+        password
+      },{
+        //for get cookie
+        withCredentials: true
+      })
+      { withCredentials: true }
+      console.log(response.data.message);
+    } catch(err) {
+        console.log(err);
+    }
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaEyeSlash } from "react-icons/fa";
+import axios from 'axios';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -20,9 +21,18 @@ const Register = () => {
         })
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
+        try{
+            const response = await axios.post('http://localhost:3001/api/register', {
+                email: formData.email,
+                password: formData.password
+            })
+            console.log(response.data.message);
+        } catch(err) {
+            console.log(err);
+        }
     };
 
     return (
