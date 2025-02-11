@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Login = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -12,11 +13,12 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
+    const BASE = "http://172.16.12.75:3001";
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
     try {
-      const response = await axios.post('http://localhost:3001/api/login', {
+      const response = await axios.post(`${BASE}/api/login`, {
         email,
         password
       },{
@@ -69,12 +71,10 @@ const Login = () => {
                 required
                 className="w-full px-3 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
               />
-              <button>
-                <FaEyeSlash
-                  onClick={passwordToggle}
-                  className="absolute right-3 top-4 size-5 hover:scale-110 active:scale-90"
-                />
-              </button>
+              <FaEyeSlash
+                onClick={passwordToggle}
+                className="absolute right-3 top-4 size-5 hover:scale-110 active:scale-90"
+              />
             </div>
           </div>
           <div className="py-2 flex items-center justify-between">
@@ -103,9 +103,12 @@ const Login = () => {
           </button>
           <p className="pt-2 text-sm text-neutral-800 text-center">
             Don't have an account?
-            <a href="#" className="ml-1 text-neutral-900 hover:underline">
+            <Link
+              to="/register"
+              className="ml-1 text-neutral-900 hover:underline"
+            >
               Register
-            </a>
+            </Link>
           </p>
         </form>
       </div>
@@ -113,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
