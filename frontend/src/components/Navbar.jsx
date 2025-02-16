@@ -33,10 +33,10 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/contact"
+              to="/profile"
               className="text-lg font-medium hover:drop-shadow-md hover:text-xl active:text-lg transition-all"
             >
-              Contact
+              Profile
             </NavLink>
           </li>
         </ul>
