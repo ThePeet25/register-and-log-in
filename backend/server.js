@@ -40,20 +40,14 @@ app.post('/api/register', async (req, res) => {
     }
     try {
         //generate salt and use in hash funciton for hash password
-        bcrypt.genSalt(12, function(err, salt) {
-            bcrypt.hash(password, salt, async function(err, hash){
-                await pool.query(`insert into users( email, password ) values ( '${userData.email}' , '${hash}' )`);
-                res.json({
-                    message: "register success",
-                });
-            })
-        })
-        // const salt = bcrypt.genSalt(12);
-        // const hash = bcrypt.hash(userData.password, salt);
-        // await pool.query(`insert into users( email, password ) values ( '${userData.email}' , '${hash}' )`);
+        const salt = await bcrypt.genSalt(12);
+        const hash = await bcrypt.hash(userData.password, salt);
+        await pool.query(`insert into users( email, password ) values ( '${userData.email}' , '${hash}' )`);
         // await pool.query(`INSERT INTO users (email, password) VALUES (?, ?)`, [email, hash]);
+        res.send("register success");
     } catch(err) {
         res.send("email is already exits");
+        console.log("email is already exits");
         console.error(err);
     }
 });
@@ -111,7 +105,7 @@ app.post('/api/login', async (req, res) => {
         res.cookie("token", token, {
             //cookie expires in 30k ms
             maxAge: 300000,
-            secure: true,
+            secure: false,
             httpOnly: true,
             //host ไม่จำเป็นต้องเป็นตัวเดียวกัน
             sameSite: "none"

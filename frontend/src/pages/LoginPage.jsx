@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const passwordToggle = () => {
     setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
-    const BASE = "http://172.16.12.75:3001";
+    const BASE = "http://localhost:3001";
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
@@ -24,9 +27,9 @@ const LoginPage = () => {
       },{
         //for get cookie
         withCredentials: true
-      })
-      { withCredentials: true }
+      });
       console.log(response.data.message);
+      navigate("/");
     } catch(err) {
         console.log(err);
     }

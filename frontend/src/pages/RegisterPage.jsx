@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const RegisterPage = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const passwordToggle = () => {
     setShowPassword(!showPassword);
@@ -23,7 +25,7 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    const BASE = "http://172.16.12.75:3001";
+    const BASE = "http://localhost:3001";
     e.preventDefault();
     console.log(formData);
     try{
@@ -32,8 +34,13 @@ const RegisterPage = () => {
           password: formData.password
       }, {
         withCredentials: true
-      })
-      console.log(response.data.message);
+      });
+      if(response.data === "register success") {
+        window.alert("register success");
+        navigate("/login");
+      } else {
+        window.alert("Email is already exits");
+      }
   } catch(err) {
       console.log(err);
   }
